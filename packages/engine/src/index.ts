@@ -1,0 +1,21 @@
+/** @lablens/engine — public API. Framework-free; runs in Node, browsers and Web Workers. */
+export * from "./schema/scene";
+export * from "./schema/validate";
+export * from "./params";
+export * from "./templates";
+export * from "./examples";
+export * from "./run";
+export * from "./format";
+export * from "./describe";
+export * from "./parse/offline";
+export * from "./tutor/experiments";
+export * from "./validation/cases";
+export * from "./analytic/types";
+export { simulateMechanics, MechanicsSim, bodyName } from "./mechanics/engine";
+export type { MechResult, MechFrame, MechEvent, ForceVec, ForceKind, BodyFrame, V2 } from "./mechanics/engine";
+export { simulateCircuit, acSweep, findResonance, Circuit } from "./circuits/mna";
+export type { CircuitResult, CircuitFrame } from "./circuits/mna";
+export { traceOptics, leastSquaresMeet, buildGeometry } from "./optics/tracer";
+export type { OpticsResult, RayPath, OpticsEvent, P2 } from "./optics/tracer";
+export { solveLinear, solveComplex } from "./math/linalg";
+export { ellipticK, linearFit, polyFit, percentError } from "./math/numeric";

@@ -1,0 +1,38 @@
+{
+  "name": "lablens",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @lablens/web",
+    "build": "npm run build -w @lablens/web",
+    "preview": "npm run preview -w @lablens/web",
+    "test": "npm run test -w @lablens/engine && npm run test -w @lablens/web && vitest run api",
+    "typecheck": "tsc -p packages/engine --noEmit && tsc -p apps/web --noEmit && tsc -p api --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "bench": "npm run bench -w @lablens/engine"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.4",
+    "axe-core": "^4.14.1",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "playwright-core": "^1.65.1",
+    "prettier": "^3.10.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.74.0",
+    "vitest": "^4.1.12"
+  }
+}

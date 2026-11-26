@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="LabLens turns a photo or sketch of a physics problem into a live, verified, accessible simulation lab — with its own physics engines, sonified graphs and a Socratic tutor. Works offline."
+    />
+    <meta name="theme-color" content="#172033" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>LabLens — sketch to simulation lab</title>
+    <script>
+      try {
+        const s = JSON.parse(localStorage.getItem("lablens:settings") || "{}");
+        if (s.theme) document.documentElement.dataset.theme = s.theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <style>
+      /* critical first paint, before any JS: the pitch. System font on purpose: no web-font swap, so no layout shift */
+      #pitch {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 12px 16px 0;
+        font:
+          400 15px / 1.5 system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        color: #535c6d;
+      }
+      #pitch strong {
+        color: #172033;
+        font-weight: 600;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) #pitch {
+          color: #a3abb9;
+        }
+        :root:not([data-theme="light"]) #pitch strong {
+          color: #ebe7dc;
+        }
+      }
+      :root[data-theme="dark"] #pitch {
+        color: #a3abb9;
+      }
+      :root[data-theme="dark"] #pitch strong {
+        color: #ebe7dc;
+      }
+      body {
+        margin: 0;
+        background: #f5f2ea;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) body {
+          background: #0f131a;
+        }
+      }
+      :root[data-theme="dark"] body {
+        background: #0f131a;
+      }
+    </style>
+    <aside aria-label="What LabLens does">
+      <p id="pitch">
+        <strong>Photograph a physics problem, get a live lab.</strong> LabLens simulates it with its own engines, checks the answer against theory, and lets you
+        see, hear and question it — offline, on any device.
+      </p>
+    </aside>
+    <div id="root"></div>
+    <noscript>LabLens needs JavaScript to run its physics engines.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

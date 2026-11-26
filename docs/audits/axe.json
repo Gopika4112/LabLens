@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-25T22:03:03.135Z",
+  "axe": "4.14.1",
+  "results": [
+    {
+      "page": "#/lab/incline-pulley",
+      "theme": "light",
+      "violations": [],
+      "passes": 48
+    },
+    {
+      "page": "#/lab/rlc",
+      "theme": "light",
+      "violations": [],
+      "passes": 48
+    },
+    {
+      "page": "#/lab/tir",
+      "theme": "light",
+      "violations": [],
+      "passes": 47
+    },
+    {
+      "page": "#/examples",
+      "theme": "light",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/build",
+      "theme": "light",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/accuracy",
+      "theme": "light",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/about",
+      "theme": "light",
+      "violations": [],
+      "passes": 36
+    },
+    {
+      "page": "#/lab/incline-pulley",
+      "theme": "dark",
+      "violations": [],
+      "passes": 48
+    },
+    {
+      "page": "#/lab/rlc",
+      "theme": "dark",
+      "violations": [],
+      "passes": 48
+    },
+    {
+      "page": "#/lab/tir",
+      "theme": "dark",
+      "violations": [],
+      "passes": 47
+    },
+    {
+      "page": "#/examples",
+      "theme": "dark",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/build",
+      "theme": "dark",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/accuracy",
+      "theme": "dark",
+      "violations": [],
+      "passes": 44
+    },
+    {
+      "page": "#/about",
+      "theme": "dark",
+      "violations": [],
+      "passes": 36
+    }
+  ]
+}

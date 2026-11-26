@@ -1,0 +1,409 @@
+@import "tailwindcss";
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+
+/* Latin subsets only, declared by hand: keeps the render-blocking CSS small.
+   Greek letters (θ, μ, Ω) fall back to the system font for these faces. */
+@font-face {
+  font-family: "Fraunces Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("@fontsource/opendyslexic/files/opendyslexic-latin-400-normal.woff2") format("woff2");
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LabLens design system — "lab notebook meets instrument panel"
+   Paper, ink and graph-grid for the notebook; a dark, phosphor-lit
+   instrument panel for live readouts. All pairs meet WCAG 2.2 AA.
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-ok: var(--ok);
+  --color-bad: var(--bad);
+  --color-dash: var(--dash);
+  --color-dash-ink: var(--dash-ink);
+  --color-phosphor: var(--phosphor);
+}
+
+:root {
+  --paper: #f5f2ea;
+  --panel: #fffdf8;
+  --ink: #172033;
+  --muted: #535c6d;
+  --line: #d8d1c1;
+  --grid: rgba(23, 32, 51, 0.055);
+  --signal: #b93d0b;
+  --signal-ink: #ffffff;
+  --ok: #166534;
+  --bad: #b91c1c;
+  --dash: #141b26;
+  --dash-ink: #e9e5da;
+  --phosphor: #f2b33d;
+  /* force palette — distinguishable for common colour-vision deficiencies, and always labelled */
+  --f-gravity: #2b59c3;
+  --f-normal: #13804a;
+  --f-friction: #b45309;
+  --f-tension: #8b3fc7;
+  --f-spring: #0e7490;
+  --f-drag: #5b6475;
+  --f-applied: #be123c;
+  --f-velocity: #172033;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --paper: #0f131a;
+  --panel: #161c25;
+  --ink: #ebe7dc;
+  --muted: #a3abb9;
+  --line: #2c3544;
+  --grid: rgba(235, 231, 220, 0.05);
+  --signal: #f0883e;
+  --signal-ink: #1b1206;
+  --ok: #4ade80;
+  --bad: #f87171;
+  --dash: #0a0d12;
+  --dash-ink: #ebe7dc;
+  --phosphor: #f5b942;
+  --f-gravity: #7aa2ff;
+  --f-normal: #4ade80;
+  --f-friction: #f5a524;
+  --f-tension: #c79bff;
+  --f-spring: #38bdf8;
+  --f-drag: #a3abb9;
+  --f-applied: #fb7185;
+  --f-velocity: #ebe7dc;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f131a;
+    --panel: #161c25;
+    --ink: #ebe7dc;
+    --muted: #a3abb9;
+    --line: #2c3544;
+    --grid: rgba(235, 231, 220, 0.05);
+    --signal: #f0883e;
+    --signal-ink: #1b1206;
+    --ok: #4ade80;
+    --bad: #f87171;
+    --dash: #0a0d12;
+    --dash-ink: #ebe7dc;
+    --phosphor: #f5b942;
+    --f-gravity: #7aa2ff;
+    --f-normal: #4ade80;
+    --f-friction: #f5a524;
+    --f-tension: #c79bff;
+    --f-spring: #38bdf8;
+    --f-drag: #a3abb9;
+    --f-applied: #fb7185;
+    --f-velocity: #ebe7dc;
+    color-scheme: dark;
+  }
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Dyslexia-friendly mode: OpenDyslexic, wider tracking and line height */
+:root[data-font="dyslexic"] body,
+:root[data-font="dyslexic"] button,
+:root[data-font="dyslexic"] input,
+:root[data-font="dyslexic"] textarea,
+:root[data-font="dyslexic"] select {
+  font-family: "OpenDyslexic", var(--font-sans) !important;
+  letter-spacing: 0.005em;
+  word-spacing: 0.08em;
+  line-height: 1.65;
+}
+:root[data-font="dyslexic"] .font-display {
+  font-family: "OpenDyslexic", var(--font-sans) !important;
+}
+
+:root[data-size="large"] {
+  font-size: 118%;
+}
+
+/* Reduced motion: honoured from the OS and from the in-app toggle */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Browser-drawn surfaces carry the palette too */
+::selection {
+  background: color-mix(in srgb, var(--signal) 28%, transparent);
+  color: var(--ink);
+}
+html {
+  accent-color: var(--signal);
+  caret-color: var(--signal);
+  scrollbar-color: color-mix(in srgb, var(--ink) 28%, transparent) transparent;
+}
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  line-height: 1.4;
+  text-align: center;
+}
+::placeholder {
+  color: color-mix(in srgb, var(--muted) 85%, var(--panel));
+  opacity: 1;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Card = a page from the notebook */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.03),
+    0 8px 24px -18px rgba(23, 32, 51, 0.35);
+}
+
+/* Instrument = the dark readout panel */
+.instrument {
+  background: var(--dash);
+  color: var(--dash-ink);
+  border-radius: 14px;
+  border: 1px solid #000;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 30px -20px rgba(0, 0, 0, 0.6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.15s;
+}
+.btn:hover {
+  background: color-mix(in srgb, var(--panel) 85%, var(--ink));
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--signal);
+  color: var(--signal-ink);
+  border-color: transparent;
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--signal) 88%, #000);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+}
+
+/* Range slider styled as an instrument dial track */
+input[type="range"].dial {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].dial::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--signal) var(--fill, 50%), var(--line) var(--fill, 50%));
+}
+input[type="range"].dial::-moz-range-track {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--line);
+}
+input[type="range"].dial::-moz-range-progress {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--signal);
+}
+input[type="range"].dial::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 3px solid var(--signal);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+input[type="range"].dial::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 3px solid var(--signal);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--signal);
+  color: var(--signal-ink);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* The verification badge "settles" like a needle when a result arrives */
+@keyframes settle {
+  0% {
+    transform: translateY(6px) scale(0.98);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-2px) scale(1.01);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}
+.settle {
+  animation: settle 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -200%;
+  }
+}
+.scanning {
+  background-image: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--signal) 22%, transparent) 50%, transparent 100%);
+  background-size: 100% 200%;
+  animation: scan 1.2s linear infinite;
+}
